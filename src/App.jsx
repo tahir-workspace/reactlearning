@@ -15,7 +15,7 @@ function App() {
         <Route path="/">
           <Route index element={<Todolist />} />
           {/* <Route path="blogs" element={<Blogs />} /> */}
-          <Route path="create-todo" element={<Todos />} />
+          <Route path="create-todo/:id?" element={<Todos />} />
           <Route path="*" element={<NoPage />} />
         </Route>
       </Routes>

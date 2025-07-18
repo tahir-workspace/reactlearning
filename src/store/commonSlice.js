@@ -14,9 +14,12 @@ const commonSlice = createSlice({
       state.todos = state.todos.filter((todo) => todo.id !== action.payload.id);
     },
     updateTodo: (state, action) => {
+      console.log("Updating todo with id:", action.payload.id);
+      console.log("New data:", action.payload);
       const index = state.todos.findIndex(
-        (todo) => todo.id === action.payload.id
+        (todo) => todo.id == action.payload.id
       );
+      console.log("index:", index);
       if (index !== -1) {
         state.todos[index] = { ...state.todos[index], ...action.payload };
       }

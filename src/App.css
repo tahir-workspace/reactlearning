@@ -235,3 +235,60 @@ footer {
   outline: none;
   background-color: #ffffff;
 }
+
+/* */
+
+.m-50 {
+  margin: 50px;
+}
+a {
+  cursor: pointer;
+}
+
+.todo-heading {
+  text-align: left;
+  margin: 20px;
+}
+
+.todo-list {
+  text-align: left;
+  margin: 10px;
+}
+
+h1 {
+  text-transform: capitalize;
+}
+
+ul.todo-list li {
+  text-align: left;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 16px;
+  margin-bottom: 8px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  background-color: #f9f9f9;
+  font-size: 16px;
+  transition: background-color 0.2s;
+}
+
+ul.todo-list li:hover {
+  background-color: #f1f1f1;
+}
+
+ul.todo-list li span {
+  flex-grow: 1;
+}
+
+ul.todo-list li a {
+  color: #e63946;
+  text-decoration: none;
+  font-weight: bold;
+  margin-left: 16px;
+  cursor: pointer;
+}
+
+ul.todo-list li a:hover {
+  text-decoration: underline;
+}

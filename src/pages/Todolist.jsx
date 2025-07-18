@@ -16,39 +16,35 @@ export default function Todolist() {
     dispatch(removeTodo(data.payload));
   };
 
-  if (todos.length > 0) {
-    return (
-      <PageTemplate>
-        <div>
-          <h1>Todo List</h1>
-          <ul>
-            {todos.map((todo) => (
-              <li key={todo.id}>
+  return (
+    <PageTemplate>
+      <div>
+        <h2 className="todo-heading">Todo List</h2>
+        <ul className="todo-list">
+          {todos.length > 0 ? (
+            todos.map((todo) => (
+              <li key={todo.id} className="todo-item">
                 <span>{todo.todo}</span>
                 <a
+                  data-id={todo.id}
                   onClick={() => {
                     handleDelete(todo.id);
                   }}
-                  style={{ cursor: "pointer" }}
                 >
                   Delete
                 </a>
+                &nbsp;&nbsp;|&nbsp;&nbsp;
+                <a href={`/create-todo/${todo.id}`}>Edit</a>
               </li>
-            ))}
-          </ul>
-        </div>
-      </PageTemplate>
-    );
-  } else
-    return (
-      <PageTemplate>
-        <div>
-          <h1>Todo List</h1>
-          <p>No list </p>
-          <p>
-            Click on "<a href="/create-todo">Create Todo</a>" to add a new todo.
-          </p>
-        </div>
-      </PageTemplate>
-    );
+            ))
+          ) : (
+            <li>No Todo list</li>
+          )}
+        </ul>
+        <p className="m-50">
+          Click on "<a href="/create-todo">Create Todo</a>" to add a new todo.
+        </p>
+      </div>
+    </PageTemplate>
+  );
 }

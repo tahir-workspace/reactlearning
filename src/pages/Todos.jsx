@@ -1,31 +1,53 @@
 import PageTemplate from "./pageTemplate";
 import Input from "./Input";
-import { useRef } from "react";
-import { useDispatch } from "react-redux";
-import { addTodo } from "../store/commonSlice";
+import { useEffect, useRef, useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { addTodo, updateTodo } from "../store/commonSlice";
+import { useParams } from "react-router-dom";
 
 export default function Todos() {
+  const todos = useSelector((state) => state.common.todos);
+  const { id } = useParams();
   const todoRef = useRef(null);
+  const [form, setForm] = useState("add");
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (id) {
+      setForm("edit");
+      todoRef.current.value =
+        todos.find((todo) => todo.id === parseInt(id))?.todo || "";
+
+      if (todoRef.current.value == "") {
+        alert("Todo not found");
+        window.location.href = "/create-todo";
+        return;
+      }
+    } else {
+      console.log("Creating a new todo");
+    }
+  }, [id, todos]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     const data = {
-      type: "add",
+      type: form,
       payload: {
-        id: Math.round(Math.random() * 10000),
+        id: form == "edit" ? parseInt(id) : Math.round(Math.random() * 10000),
         todo: todoRef.current.value,
       },
     };
 
-    dispatch(addTodo(data.payload));
+    form == "add"
+      ? dispatch(addTodo(data.payload))
+      : dispatch(updateTodo(data.payload));
     todoRef.current.value = "";
   };
   return (
     <PageTemplate>
       <div className="contact-container">
-        <h1>Contact Us</h1>
-        <p>If you have any questions, feel free to reach out!</p>
+        <h1>{form} New Todo</h1>
+        <p></p>
         <form>
           <div className="form-group">
             <Input
