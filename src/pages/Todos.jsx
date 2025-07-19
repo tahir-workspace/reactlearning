@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { addTodo, updateTodo } from "../store/commonSlice";
 import { useParams } from "react-router-dom";
+import Todo from "./Todo";
 
 export default function Todos() {
   const todos = useSelector((state) => state.common.todos);
@@ -43,10 +44,11 @@ export default function Todos() {
       : dispatch(updateTodo(data.payload));
     todoRef.current.value = "";
   };
+
   return (
     <PageTemplate>
       <div className="contact-container">
-        <h1>{form} New Todo</h1>
+        <h1>{form} Todo</h1>
         <p></p>
         <form>
           <div className="form-group">
@@ -61,6 +63,7 @@ export default function Todos() {
           <input type="submit" value="Submit" onClick={handleSubmit} />
         </form>
       </div>
+      <Todo />
     </PageTemplate>
   );
 }
