@@ -1,4 +1,3 @@
-import PageTemplate from "./pageTemplate";
 import Input from "./Input";
 import { useEffect, useRef, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
@@ -46,7 +45,7 @@ export default function Todos() {
   };
 
   return (
-    <PageTemplate>
+    <>
       <div className="contact-container">
         <h1>{form} Todo</h1>
         <p></p>
@@ -64,6 +63,6 @@ export default function Todos() {
         </form>
       </div>
       <Todo />
-    </PageTemplate>
+    </>
   );
 }
